@@ -1,12 +1,12 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Outlet } from "react-router-dom";
-import { AuthProvider } from "@/context/auth-context";
+import { UserProvider } from "@/context/user-context";
 
-export default function RootLayout() {
+export default function AppLayout() {
   return (
-    <AuthProvider>
+    <UserProvider>
       <Toaster />
       <Outlet />
-    </AuthProvider>
+    </UserProvider>
   );
 }

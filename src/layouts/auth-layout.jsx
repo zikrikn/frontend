@@ -1,11 +1,15 @@
 import { Link } from "react-router-dom";
 import { useLocation } from "react-router-dom";
+
+import { useUser } from "@/context/user-context";
 import { cn } from "@/utils/cn";
 
 import Logo from "@/assets/images/circle-logo.webp";
 import AuthImg from "@/assets/images/auth-img.jpg";
+import { Navigate } from "react-router-dom";
 
 export function AuthLayout({ children }) {
+  const { user } = useUser();
   const { pathname } = useLocation();
   const authType = pathname.replace("/auth/", "");
 
@@ -21,6 +25,8 @@ export function AuthLayout({ children }) {
       navLink: "/auth/register",
     },
   };
+
+  if (user) return <Navigate to="/" replace />;
 
   return (
     <div

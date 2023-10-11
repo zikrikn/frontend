@@ -26,7 +26,7 @@ export function AuthForm({ fields, submitText }) {
     resolver: yupResolver(authSchema[authType]),
   });
 
-  const authenticating = async (data) => {
+  const requestAuth = async (data) => {
     const response = await request(data);
 
     toast({
@@ -42,7 +42,7 @@ export function AuthForm({ fields, submitText }) {
 
   return (
     <FormProvider {...form}>
-      <form onSubmit={form.handleSubmit(authenticating)}>
+      <form onSubmit={form.handleSubmit(requestAuth)}>
         <div className="flex flex-col space-y-4">
           {fields.length
             ? fields.map((input) => (

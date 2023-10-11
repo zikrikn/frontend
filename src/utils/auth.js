@@ -2,16 +2,14 @@ import Cookies from "js-cookie";
 
 export function handleAuth(token) {
   if (token) {
-    Cookies.set("token", token, { expires: 3, path: "/" });
-    window.location.replace("/");
+    Cookies.set("token", token, { expires: 3 });
+    setTimeout(() => window.location.replace("/"), 1500);
   }
 }
 
 export function getToken() {
   const token = Cookies.get("token");
-
-  if (!token) return null;
-  return token;
+  return token ?? null;
 }
 
 export function logout() {

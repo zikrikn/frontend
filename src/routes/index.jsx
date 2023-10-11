@@ -1,11 +1,12 @@
 import { createBrowserRouter } from "react-router-dom";
-import { Home, Register, Login } from "@/pages";
-import RootLayout from "@/layouts/root-layout";
+import { Home, Register, Login, Error, Profile } from "@/pages";
+import { PrivateRoute } from "./private-route";
+import AppLayout from "@/layouts/app-layout";
 
 export const router = createBrowserRouter([
   {
-    element: <RootLayout />,
-    errorElement: <h1>404 - Something wrong</h1>,
+    element: <AppLayout />,
+    errorElement: <Error />,
     children: [
       {
         path: "/",
@@ -23,6 +24,14 @@ export const router = createBrowserRouter([
             path: "login",
           },
         ],
+      },
+      {
+        path: "/profile",
+        element: (
+          <PrivateRoute role={["user", "admin"]} redirect="/">
+            <Profile />
+          </PrivateRoute>
+        ),
       },
     ],
   },
