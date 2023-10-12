@@ -3,5 +3,5 @@ steps:
   args:
   - 'app'
   - 'deploy'
-  - 'app-engine/app.yaml' # Path to your app.yaml file
+  - 'appengine/app.yaml' # Path to your app.yaml file
 timeout: '1600s'
